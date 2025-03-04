@@ -18,20 +18,28 @@ def Get_MS():
      [0,0, 0, 1]
 		
 	])
+
+	w_list = [[0,0,1],
+	[0,1,0],
+	[0,1,0],
+	[0,1,0],
+	[1,0,0],
+	[0,1,0]]
+
+
+	q_list = [[-0.15,0.15,0],
+	[-0.15,0,0.162],
+	[0.094,0,0.162],
+	[0.307,0,0.162],
+	[0,0.270,0.162],
+	[0.390,0,0.162]]
 	
-	w1 = [0,0,1]
-	w2 = [0,1,0]
-	w3 = [0,1,0]
-	w4 = [0,1,0]
-	w5 = [1,0,0]
-	w6 = [0,1,0]
- 
-	
-
-
-
-
-
+	V = []
+    for i in [0, 5]:
+    	v_i = np.cross(-np.array(w_list[i]), np.array(q_list[i]))
+    	V.append(v_i)
+    
+    S = []
 	# ==============================================================#
 	return M, S
 
@@ -50,6 +58,14 @@ def lab_fk(theta1, theta2, theta3, theta4, theta5, theta6):
 
 	# =================== Your code starts here ====================#
 
+	thetalist = np.array([theta1, theta2, theta3, theta4, theta5, theta6])
+
+	T = np.array(M)
+    
+    for i in range(len(thetalist) - 1, -1, -1):
+        T = np.dot(MatrixExp6(VecTose3(np.array(Slist)[:, i] \
+                                       * thetalist[i])), T)
+    return T
 
 
 
