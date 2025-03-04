@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+NOT OURS#!/usr/bin/env python3
 import numpy as np
 from scipy.linalg import expm
 from lab3_header import *
