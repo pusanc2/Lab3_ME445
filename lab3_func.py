@@ -9,43 +9,40 @@ Angles are in radian, distance are in meters.
 """
 
 def Get_MS():
-	# =================== Your code starts here ====================#
-	# Fill in the correct values for S1~6, as well as the M matrix
-	M = np.array([
-     [0, -1, 0, 0.39],
-     [0, 0, -1, 0.405],
-     [1, 0, 0, 0.215],
-     [0,0, 0, 1]
-		
-	])
+    # =================== Your code starts here ====================#
+    # Fill in the correct values for S1~6, as well as the M matrix
+    M = np.array([
+        [0, -1, 0, 0.39],
+        [0, 0, -1, 0.401],
+        [1, 0, 0, 0.2155],
+        [0, 0, 0, 1]
+    ])
 
-	w_list = [np.array([0,0,1]),
-		np.array([0,1,0]),
-		np.array([0,1,0]),
-		np.array([0,1,0]),
-		np.array([1,0,0]),
-		np.array([0,1,0])
-  	]
+    w_list = np.array([
+        [0, 0, 1],
+        [0, 1, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+        [1, 0, 0],
+        [0, 1, 0]
+    ])
+    
+    q_list = np.array([
+        [-0.15, 0.15, 0],
+        [-0.15, 0, 0.162],
+        [0.094, 0, 0.162],
+        [0.307, 0, 0.162],
+        [0, 0.260, 0.162],
+        [0.390, 0, 0.162]
+    ])
+    
+    S = np.column_stack([np.concatenate((w, np.cross(-w, q))) for w, q in zip(w_list, q_list)])
 
-	q_list = [np.array([-0.15,0.15,0]),
-		np.array([-0.15,0,0.162]),
-		np.array([0.094,0,0.162]),
-		np.array([0.307,0,0.162]),
-		np.array([0,0.270,0.162]),
-		np.array([0.390,0,0.162])
-  	]
-	
-	S = np.zeros((6,6))
-	for i in range(6):
-		w = w_list[i]
-		q = q_list[i]
-		v = np.cross(-w, q)
-		S[:, i] = np.concatenate([w, v])
-	
-	print(M, "\n")
-	print(S, "\n")
-	# ==============================================================#
-	return M, S
+    print(M, "\n")
+    print(S, "\n")
+    # ==============================================================#
+    return M, S
+
 
 
 """
